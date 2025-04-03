@@ -1,4 +1,3 @@
-
 import { BrowserProvider, Contract, formatEther, parseEther } from "ethers";
 import { CONTRACT_ABI, CONTRACT_ADDRESS } from "./constants";
 
@@ -47,7 +46,12 @@ export const connectWallet = async () => {
  * Get contract instance
  */
 export const getContract = async (signer: any) => {
-  return new Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
+  try {
+    return new Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signer);
+  } catch (error) {
+    console.error("Error getting contract instance:", error);
+    throw new Error("Failed to connect to smart contract. Please check your connection and try again.");
+  }
 };
 
 /**
@@ -59,14 +63,37 @@ export const listResource = async (
   signer: any
 ) => {
   try {
+    console.log("Starting resource listing process...");
     const contract = await getContract(signer);
-    const specsString = JSON.stringify(specs);
-    const priceInWei = parseEther(pricePerHour);
     
+    console.log("Contract instance created");
+    const specsString = JSON.stringify(specs);
+    console.log("Specs stringified:", specsString);
+    
+    const priceInWei = parseEther(pricePerHour);
+    console.log("Price in wei:", priceInWei.toString());
+    
+    console.log("Sending transaction to list resource...");
     const tx = await contract.listResource(specsString, priceInWei);
-    return await tx.wait();
-  } catch (error) {
+    console.log("Transaction sent:", tx);
+    
+    console.log("Waiting for transaction confirmation...");
+    const receipt = await tx.wait();
+    console.log("Transaction confirmed:", receipt);
+    
+    return receipt;
+  } catch (error: any) {
     console.error("Error listing resource:", error);
+    
+    // Provide more specific error messages based on common errors
+    if (error.message?.includes("user rejected")) {
+      throw new Error("Transaction was rejected in your wallet");
+    } else if (error.message?.includes("insufficient funds")) {
+      throw new Error("Insufficient ETH in your wallet for gas fees");
+    } else if (error.message?.includes("nonce")) {
+      throw new Error("Transaction nonce error. Please reset your MetaMask account or try again");
+    }
+    
     throw error;
   }
 };

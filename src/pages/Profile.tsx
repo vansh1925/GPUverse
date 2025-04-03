@@ -27,15 +27,21 @@ const Profile = () => {
       
       setIsLoading(true);
       try {
+        console.log("Fetching user data for address:", address);
+        
         // Check if user is a provider
         const providerStatus = await isResourceProvider(address, signer);
+        console.log("Provider status:", providerStatus);
         setIsProvider(providerStatus);
         
         // Get all resources and filter user's resources
         const allResources = await getAllResources(signer);
+        console.log("All resources:", allResources);
+        
         const userOwnedResources = allResources.filter(
           r => r.provider.toLowerCase() === address.toLowerCase()
         );
+        console.log("User owned resources:", userOwnedResources);
         
         setUserResources(userOwnedResources);
       } catch (error) {
@@ -56,6 +62,10 @@ const Profile = () => {
         description: "Your wallet address has been copied to clipboard",
       });
     }
+  };
+
+  const handleListFirstGPUClick = () => {
+    setActiveTab("listNew");
   };
 
   return (
@@ -113,14 +123,18 @@ const Profile = () => {
                 </CardContent>
               </Card>
 
-              <Tabs defaultValue="myGPUs" onValueChange={setActiveTab} className="w-full mb-8">
+              <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full mb-8">
                 <TabsList className="grid w-full md:w-auto grid-cols-2">
                   <TabsTrigger value="myGPUs">My GPUs</TabsTrigger>
                   <TabsTrigger value="listNew">List New GPU</TabsTrigger>
                 </TabsList>
                 
                 <TabsContent value="myGPUs" className="pt-6">
-                  {userResources.length > 0 ? (
+                  {isLoading ? (
+                    <div className="text-center py-12">
+                      <p>Loading your GPU listings...</p>
+                    </div>
+                  ) : userResources.length > 0 ? (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                       {userResources.map((resource) => (
                         <GPUCard
@@ -142,7 +156,7 @@ const Profile = () => {
                       </p>
                       <Button 
                         className="mt-4"
-                        onClick={() => setActiveTab("listNew")}
+                        onClick={handleListFirstGPUClick}
                       >
                         List Your First GPU
                       </Button>

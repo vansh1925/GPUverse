@@ -24,10 +24,19 @@ export function GPUListingForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   
   const { toast } = useToast();
-  const { signer } = useWallet();
+  const { signer, isConnected } = useWallet();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!isConnected || !signer) {
+      toast({
+        title: "Wallet not connected",
+        description: "Please connect your wallet to list a GPU",
+        variant: "destructive",
+      });
+      return;
+    }
     
     // Validate form
     if (!gpuModel || !gpuMemory || !gpuCores || !gpuBenchmark || !pricePerHour) {
@@ -58,7 +67,10 @@ export function GPUListingForm() {
     
     try {
       setIsSubmitting(true);
-      await listResource(specs, pricePerHour, signer);
+      console.log("Submitting GPU listing...", { specs, pricePerHour, signer });
+      
+      const result = await listResource(specs, pricePerHour, signer);
+      console.log("Listing result:", result);
       
       toast({
         title: "GPU Listed Successfully",
@@ -72,6 +84,7 @@ export function GPUListingForm() {
       setGpuBenchmark("");
       setPricePerHour("");
     } catch (error: any) {
+      console.error("Error listing GPU:", error);
       toast({
         title: "Failed to List GPU",
         description: error.message || "Something went wrong",
