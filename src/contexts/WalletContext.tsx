@@ -3,6 +3,13 @@ import React, { createContext, useContext, useState, useEffect, ReactNode } from
 import { connectWallet, isMetaMaskInstalled } from "@/lib/web3";
 import { useToast } from "@/hooks/use-toast";
 
+// Add ethereum property to the Window interface
+declare global {
+  interface Window {
+    ethereum?: any;
+  }
+}
+
 interface WalletContextType {
   address: string | null;
   signer: any;

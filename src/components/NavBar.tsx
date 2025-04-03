@@ -1,8 +1,7 @@
 
 import { Link, useLocation } from "react-router-dom";
 import { WalletConnect } from "./WalletConnect";
-import { GitHubLogoIcon, HomeIcon } from "@radix-ui/react-icons";
-import { Cpu, LayoutDashboard, User } from "lucide-react";
+import { Cpu, LayoutDashboard, User, Home, Github } from "lucide-react";
 import { Button } from "./ui/button";
 import { useWallet } from "@/contexts/WalletContext";
 import { isContractOwner } from "@/lib/web3";
@@ -45,7 +44,7 @@ export function NavBar() {
                   : "text-muted-foreground hover:text-foreground"
               }`}
             >
-              <HomeIcon className="h-4 w-4" />
+              <Home className="h-4 w-4" />
               Home
             </Link>
             <Link
@@ -91,7 +90,7 @@ export function NavBar() {
         <div className="flex items-center gap-4">
           <Button variant="ghost" size="icon" asChild>
             <a href="https://github.com" target="_blank" rel="noreferrer">
-              <GitHubLogoIcon className="h-4 w-4" />
+              <Github className="h-4 w-4" />
               <span className="sr-only">GitHub</span>
             </a>
           </Button>

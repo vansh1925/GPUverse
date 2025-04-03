@@ -1,7 +1,8 @@
 
 import { BrowserProvider, Contract, formatEther, parseEther } from "ethers";
 import { CONTRACT_ABI, CONTRACT_ADDRESS } from "./constants";
-import { useToast } from "@/hooks/use-toast";
+
+// Window interface is already extended in WalletContext.tsx
 
 /**
  * Checks if MetaMask is installed
