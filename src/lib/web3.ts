@@ -1,3 +1,4 @@
+
 import { BrowserProvider, Contract, formatEther, parseEther } from "ethers";
 import { CONTRACT_ABI, CONTRACT_ADDRESS } from "./constants";
 
@@ -135,16 +136,35 @@ export const rentResource = async (
   signer: any
 ) => {
   try {
+    console.log("Starting rental process for resource ID:", resourceId);
+    console.log("Duration:", duration, "hours");
+    console.log("Total price:", totalPrice, "ETH");
+    
     const contract = await getContract(signer);
     const valueInWei = parseEther(totalPrice);
+    console.log("Value in wei:", valueInWei.toString());
     
+    console.log("Sending transaction to rent resource...");
     const tx = await contract.rentResource(resourceId, duration, {
       value: valueInWei
     });
+    console.log("Transaction sent:", tx);
     
-    return await tx.wait();
-  } catch (error) {
+    console.log("Waiting for transaction confirmation...");
+    const receipt = await tx.wait();
+    console.log("Transaction confirmed:", receipt);
+    
+    return receipt;
+  } catch (error: any) {
     console.error("Error renting resource:", error);
+    
+    // Provide more specific error messages based on common errors
+    if (error.message?.includes("user rejected")) {
+      throw new Error("Transaction was rejected in your wallet");
+    } else if (error.message?.includes("insufficient funds")) {
+      throw new Error("Insufficient ETH in your wallet for gas fees");
+    }
+    
     throw error;
   }
 };
@@ -154,11 +174,32 @@ export const rentResource = async (
  */
 export const completeRental = async (resourceId: number, signer: any) => {
   try {
+    console.log("Starting completion process for resource ID:", resourceId);
+    
     const contract = await getContract(signer);
+    console.log("Contract instance created for completing rental");
+    
+    console.log("Sending transaction to complete rental...");
     const tx = await contract.completeRental(resourceId);
-    return await tx.wait();
-  } catch (error) {
+    console.log("Transaction sent:", tx);
+    
+    console.log("Waiting for transaction confirmation...");
+    const receipt = await tx.wait();
+    console.log("Transaction confirmed:", receipt);
+    
+    return receipt;
+  } catch (error: any) {
     console.error("Error completing rental:", error);
+    
+    // Provide more specific error messages based on common errors
+    if (error.message?.includes("user rejected")) {
+      throw new Error("Transaction was rejected in your wallet");
+    } else if (error.message?.includes("insufficient funds")) {
+      throw new Error("Insufficient ETH in your wallet for gas fees");
+    } else if (error.message?.includes("execution reverted")) {
+      throw new Error("Smart contract error: Only the renter can complete this rental or it's still active");
+    }
+    
     throw error;
   }
 };

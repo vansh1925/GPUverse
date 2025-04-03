@@ -44,13 +44,15 @@ export default function GPURentModal({ open, onClose, gpuId, model, pricePerHour
   const handleRent = async () => {
     try {
       setIsRenting(true);
-      await rentResource(gpuId, duration, totalPrice.toString(), signer);
+      const result = await rentResource(gpuId, duration, totalPrice.toString(), signer);
       
       toast({
         title: "GPU Rented Successfully",
-        description: `You've rented ${model} for ${duration} hours`,
+        description: `You've rented ${model} for ${duration} hour(s). For demo purposes, 1 hour = 1 minute.`,
       });
       
+      // Force reload to update the UI
+      window.location.reload();
       onClose();
     } catch (error: any) {
       toast({
@@ -89,6 +91,10 @@ export default function GPURentModal({ open, onClose, gpuId, model, pricePerHour
               <ClockIcon className="h-4 w-4 mr-1 text-muted-foreground" />
               <span className="text-sm text-muted-foreground">hours</span>
             </div>
+          </div>
+          
+          <div className="text-xs text-amber-400 mb-2">
+            Note: For demo purposes, 1 hour = 1 minute of real time
           </div>
           
           <div className="rounded-md border border-border p-4 mt-2">
