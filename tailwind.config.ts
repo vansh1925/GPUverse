@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -116,6 +115,35 @@ export default {
 					'100%': {
 						transform: 'scale(1) translate(0px, 0px)'
 					}
+				},
+				'fade-in': {
+					'0%': {
+						opacity: '0',
+						transform: 'translateY(20px)'
+					},
+					'100%': {
+						opacity: '1',
+						transform: 'translateY(0)'
+					}
+				},
+				'float': {
+					'0%, 100%': {
+						transform: 'translateY(0) scale(1)',
+						opacity: '0.3'
+					},
+					'50%': {
+						transform: 'translateY(-20px) scale(1.5)',
+						opacity: '0.8'
+					}
+				},
+				'gradient': {
+					'0%': { backgroundPosition: '0% 50%' },
+					'50%': { backgroundPosition: '100% 50%' },
+					'100%': { backgroundPosition: '0% 50%' }
+				},
+				'pulse-slow': {
+					'0%, 100%': { opacity: '0.4', transform: 'scale(1)' },
+					'50%': { opacity: '0.6', transform: 'scale(1.05)' }
 				}
 			},
 			animation: {
@@ -123,14 +151,10 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'pulse-glow': 'pulse-glow 3s infinite ease-in-out',
 				'blob': 'blob 15s infinite',
-			},
-			utilities: {
-				'.animation-delay-2000': {
-					'animation-delay': '2s',
-				},
-				'.animation-delay-4000': {
-					'animation-delay': '4s',
-				},
+				'fade-in': 'fade-in 0.8s ease-out forwards',
+				'float': 'float 8s infinite ease-in-out',
+				'gradient': 'gradient 3s ease infinite',
+				'pulse-slow': 'pulse-slow 4s infinite ease-in-out'
 			}
 		}
 	},
