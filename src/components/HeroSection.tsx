@@ -1,53 +1,10 @@
 
 import { Button } from "@/components/ui/button";
-import { useEffect, useRef } from "react";
 import { useWallet } from "@/contexts/WalletContext";
 import { Cpu, ArrowDown } from "lucide-react";
-import lottie from "lottie-web";
-import aiAnimationData from "@/assets/ai-animation.json";
 
 export function HeroSection() {
   const { connect, isConnected } = useWallet();
-  const animationContainer = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    let anim: any;
-    
-    if (animationContainer.current) {
-      // Clear any existing animations first
-      animationContainer.current.innerHTML = '';
-      
-      try {
-        anim = lottie.loadAnimation({
-          container: animationContainer.current,
-          renderer: 'svg',
-          loop: true,
-          autoplay: true,
-          animationData: aiAnimationData,
-          rendererSettings: {
-            preserveAspectRatio: 'xMidYMid slice'
-            // Removed clearCanvas property as it's not in the SVGRendererConfig type
-          }
-        });
-        
-        // Make sure animation starts
-        anim.play();
-        
-        // Log animation loading success
-        console.log('Lottie animation loaded successfully');
-      } catch (error) {
-        console.error('Failed to load animation:', error);
-      }
-    } else {
-      console.warn('Animation container ref is null');
-    }
-
-    return () => {
-      if (anim) {
-        anim.destroy();
-      }
-    };
-  }, []);
 
   const scrollToMarketplace = () => {
     const marketplaceSection = document.getElementById('marketplace-section');
@@ -141,15 +98,10 @@ export function HeroSection() {
             </div>
           </div>
           
-          {/* Right side - Animation with enhanced container */}
+          {/* Right side - Empty container for your custom component */}
           <div className="relative order-first lg:order-last animate-fade-in animation-delay-300">
             <div className="aspect-square max-w-[500px] mx-auto relative bg-card/30 rounded-3xl backdrop-blur-sm p-6 border border-muted shadow-2xl hover:shadow-marketplace-primary/20 hover:border-marketplace-primary/30 transition-all duration-500">
-              {/* Animation container with proper styling */}
-              <div 
-                ref={animationContainer} 
-                className="lottie-container w-full h-full"
-              ></div>
-              <div className="absolute inset-0 bg-gradient-to-br from-transparent to-card/20 rounded-3xl pointer-events-none"></div>
+              {/* This space is intentionally left empty for your custom component */}
             </div>
             {/* Enhanced glow effect */}
             <div className="absolute -z-10 inset-0 bg-marketplace-secondary/30 filter blur-3xl rounded-full transform scale-75 translate-x-[5%] translate-y-[10%] animate-pulse-slow"></div>
