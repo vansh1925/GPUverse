@@ -1,4 +1,4 @@
-
+import Animation from "./ui/Animation";
 import { Button } from "@/components/ui/button";
 import { useWallet } from "@/contexts/WalletContext";
 import { Cpu, ArrowDown } from "lucide-react";
@@ -44,7 +44,7 @@ export function HeroSection() {
           {/* Left side - Text content with enhanced animations */}
           <div className="space-y-8 text-left animate-fade-in">
             <div className="inline-flex items-center px-3 py-1 rounded-full border border-primary/20 bg-primary/5 text-primary text-sm font-medium hover:bg-primary/10 transition-all duration-300 cursor-default">
-              <Cpu className="h-4 w-4 mr-2 animate-pulse" />
+              <Animation/>
               <span>Powered by Blockchain Technology</span>
             </div>
             
@@ -57,7 +57,7 @@ export function HeroSection() {
             </h1>
             
             <p className="text-xl text-muted-foreground max-w-xl animate-fade-in animation-delay-300">
-              GP Uverse connects compute providers with AI developers for secure, blockchain-based rentals.
+              GPU verse connects compute providers with AI developers for secure, blockchain-based rentals.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 animate-fade-in animation-delay-500">
