@@ -5,7 +5,6 @@ import { useWallet } from "@/contexts/WalletContext";
 import { Cpu, ArrowDown } from "lucide-react";
 import lottie from "lottie-web";
 import aiAnimationData from "@/assets/ai-animation.json";
-import { TooltipProvider } from "@/components/ui/tooltip";
 
 export function HeroSection() {
   const { connect, isConnected } = useWallet();
@@ -18,20 +17,29 @@ export function HeroSection() {
       // Clear any existing animations first
       animationContainer.current.innerHTML = '';
       
-      anim = lottie.loadAnimation({
-        container: animationContainer.current,
-        renderer: 'svg',
-        loop: true,
-        autoplay: true,
-        animationData: aiAnimationData,
-      });
-      
-      // Add a small delay before starting animation for better effect
-      setTimeout(() => {
-        if (anim) {
-          anim.play();
-        }
-      }, 300);
+      try {
+        anim = lottie.loadAnimation({
+          container: animationContainer.current,
+          renderer: 'svg',
+          loop: true,
+          autoplay: true,
+          animationData: aiAnimationData,
+          rendererSettings: {
+            preserveAspectRatio: 'xMidYMid slice',
+            clearCanvas: false,
+          }
+        });
+        
+        // Make sure animation starts
+        anim.play();
+        
+        // Log animation loading success
+        console.log('Lottie animation loaded successfully');
+      } catch (error) {
+        console.error('Failed to load animation:', error);
+      }
+    } else {
+      console.warn('Animation container ref is null');
     }
 
     return () => {
@@ -139,7 +147,7 @@ export function HeroSection() {
               {/* Animation container with proper styling */}
               <div 
                 ref={animationContainer} 
-                className="w-full h-full overflow-hidden"
+                className="lottie-container w-full h-full"
               ></div>
               <div className="absolute inset-0 bg-gradient-to-br from-transparent to-card/20 rounded-3xl pointer-events-none"></div>
             </div>
