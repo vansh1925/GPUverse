@@ -44,7 +44,7 @@ export function HeroSection() {
           {/* Left side - Text content with enhanced animations */}
           <div className="space-y-8 text-left animate-fade-in">
             <div className="inline-flex items-center px-3 py-1 rounded-full border border-primary/20 bg-primary/5 text-primary text-sm font-medium hover:bg-primary/10 transition-all duration-300 cursor-default">
-              <Animation/>
+              
               <span>Powered by Blockchain Technology</span>
             </div>
             
@@ -101,7 +101,7 @@ export function HeroSection() {
           {/* Right side - Empty container for your custom component */}
           <div className="relative order-first lg:order-last animate-fade-in animation-delay-300">
             <div className="aspect-square max-w-[500px] mx-auto relative bg-card/30 rounded-3xl backdrop-blur-sm p-6 border border-muted shadow-2xl hover:shadow-marketplace-primary/20 hover:border-marketplace-primary/30 transition-all duration-500">
-              {/* This space is intentionally left empty for your custom component */}
+            <Animation/>
             </div>
             {/* Enhanced glow effect */}
             <div className="absolute -z-10 inset-0 bg-marketplace-secondary/30 filter blur-3xl rounded-full transform scale-75 translate-x-[5%] translate-y-[10%] animate-pulse-slow"></div>

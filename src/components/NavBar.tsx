@@ -33,7 +33,7 @@ export function NavBar() {
         <div className="flex items-center gap-6 md:gap-8">
           <Link to="/" className="flex items-center gap-2">
             <Cpu className="h-6 w-6 text-marketplace-primary" />
-            <span className="font-bold text-lg">AI Compute Nexus</span>
+            <span className="font-bold text-lg">GPUverse</span>
           </Link>
           <nav className="hidden md:flex gap-6">
             <Link
