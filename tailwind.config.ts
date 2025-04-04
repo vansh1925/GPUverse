@@ -102,12 +102,35 @@ export default {
 						boxShadow: '0 0 30px rgba(14, 165, 233, 0.8)',
 						transform: 'scale(1.02)'
 					}
+				},
+				'blob': {
+					'0%': {
+						transform: 'scale(1) translate(0px, 0px)'
+					},
+					'33%': {
+						transform: 'scale(1.1) translate(30px, -50px)'
+					},
+					'66%': {
+						transform: 'scale(0.9) translate(-20px, 20px)'
+					},
+					'100%': {
+						transform: 'scale(1) translate(0px, 0px)'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
-				'pulse-glow': 'pulse-glow 3s infinite ease-in-out'
+				'pulse-glow': 'pulse-glow 3s infinite ease-in-out',
+				'blob': 'blob 15s infinite',
+			},
+			utilities: {
+				'.animation-delay-2000': {
+					'animation-delay': '2s',
+				},
+				'.animation-delay-4000': {
+					'animation-delay': '4s',
+				},
 			}
 		}
 	},
