@@ -1,6 +1,9 @@
+
 import { useWallet } from "@/contexts/WalletContext";
 import { NavBar } from "@/components/NavBar";
 import { HeroSection } from "@/components/HeroSection";
+import { Cpu, Wallet, Zap } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Index = () => {
   const { connect, isConnected } = useWallet();
