@@ -25,8 +25,8 @@ export function HeroSection() {
           autoplay: true,
           animationData: aiAnimationData,
           rendererSettings: {
-            preserveAspectRatio: 'xMidYMid slice',
-            clearCanvas: false,
+            preserveAspectRatio: 'xMidYMid slice'
+            // Removed clearCanvas property as it's not in the SVGRendererConfig type
           }
         });
         
