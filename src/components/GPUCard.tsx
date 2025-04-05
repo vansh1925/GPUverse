@@ -112,8 +112,8 @@ const GPUCard = ({ id, provider, specs, pricePerHour, available, isUserProvider 
               <span className="text-sm text-muted-foreground">Memory</span>
               <p className="font-medium">{parsedSpecs.memory || "N/A"}</p>
             </div>
-            <div>
-              <span className="text-sm text-muted-foreground">Cores</span>
+            <div className={available?"hidden":""}>
+              <span className="text-sm text-muted-foreground">Access Code</span>
               <p className="font-medium">{parsedSpecs.cores || "N/A"}</p>
             </div>
           </div>

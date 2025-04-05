@@ -126,10 +126,10 @@ export function GPUListingForm() {
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="cores">Cores</Label>
+              <Label htmlFor="cores">Access Code</Label>
               <Input
                 id="cores"
-                placeholder="e.g. 16384"
+                placeholder="e.g. 1638 4454 6543"
                 value={gpuCores}
                 onChange={(e) => setGpuCores(e.target.value)}
               />
