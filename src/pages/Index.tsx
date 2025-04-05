@@ -25,7 +25,7 @@ const Index = () => {
                   Built on Ethereum
                 </div>
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                  Why AI Compute Nexus?
+                  Why GPUverse?
                 </h2>
                 <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                   Our decentralized marketplace connects AI developers with GPU providers, enabling cost-effective access to compute resources.
@@ -68,7 +68,7 @@ const Index = () => {
       {/* Footer */}
       <footer className="border-t py-6 md:py-0">
         <div className="container flex flex-col items-center justify-between gap-4 md:h-16 md:flex-row">
-          <p className="text-sm text-muted-foreground">© 2025 AI Compute Nexus. All rights reserved.</p>
+          <p className="text-sm text-muted-foreground">© 2025 GPUverse. All rights reserved.</p>
           <div className="flex items-center gap-4 text-sm text-muted-foreground">
             <Link to="/" className="font-medium underline underline-offset-4">Home</Link>
             <Link to="/marketplace" className="font-medium underline underline-offset-4">Marketplace</Link>

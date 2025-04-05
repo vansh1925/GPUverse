@@ -104,7 +104,7 @@ const Admin = () => {
           <div className="mb-8">
             <h1 className="text-3xl font-bold">Admin Dashboard</h1>
             <p className="text-muted-foreground">
-              Manage the AI Compute Nexus platform
+              Manage the GPUverse platform
             </p>
           </div>
           

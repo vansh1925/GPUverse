@@ -227,7 +227,7 @@ const Profile = () => {
       <footer className="border-t py-6">
         <div className="container flex justify-between items-center">
           <p className="text-sm text-muted-foreground">
-            © 2025 AI Compute Nexus
+            © 2025 GPUverse
           </p>
         </div>
       </footer>
