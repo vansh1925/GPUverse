@@ -16,4 +16,4 @@ Automated Payments – Smart contracts ensure secure fund transfers between rent
 
 Remote Access – Renters can access rented GPUs via SSH/VNC after a successful transaction.
 
-This platform aims to democratize access to high-performance computing, making AI development more cost-effective and accessible.
+This platform aims to democratize access to high-performance computing, making AI development more cost-effective and accessible
